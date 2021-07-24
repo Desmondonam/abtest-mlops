@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/0/5799a205d1cc4ff4baebf68279980088/artifacts
+end_time: 1627145423560
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 5799a205d1cc4ff4baebf68279980088
+run_uuid: 5799a205d1cc4ff4baebf68279980088
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1627145423298
+status: 3
+tags: []
+user_id: DESMOND
