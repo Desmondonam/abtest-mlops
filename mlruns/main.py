@@ -5,7 +5,7 @@ import mlflow
 from mlflow import log_metric, log_param, log_artifacts
 
 if __name__ == "__main__":
-    mlflow.set_experiment(experiment_name='fgroup2')
+    mlflow.set_experiment(experiment_name='AB test')
     # Log a parameter (key-value pair)
     log_param("param1", randint(0, 100))
 

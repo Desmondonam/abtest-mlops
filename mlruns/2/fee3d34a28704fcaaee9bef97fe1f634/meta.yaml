@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/DESMOND/abtest-mlops/mlruns/2/fee3d34a28704fcaaee9bef97fe1f634/artifacts
+end_time: 1627051607132
+entry_point_name: ''
+experiment_id: '2'
+lifecycle_stage: active
+name: ''
+run_id: fee3d34a28704fcaaee9bef97fe1f634
+run_uuid: fee3d34a28704fcaaee9bef97fe1f634
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1627051606790
+status: 3
+tags: []
+user_id: DESMOND
