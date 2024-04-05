@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Admin/Desktop/Desmondonam/Projects/abtest-mlops/abtest-mlops/mlruns/mlruns/954538702110920225/1981c53bbad544a38bf3a3944099c897/artifacts
+end_time: 1712306001053
+entry_point_name: ''
+experiment_id: '954538702110920225'
+lifecycle_stage: active
+run_id: 1981c53bbad544a38bf3a3944099c897
+run_name: intrigued-stag-801
+run_uuid: 1981c53bbad544a38bf3a3944099c897
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712306000986
+status: 3
+tags: []
+user_id: Desmond

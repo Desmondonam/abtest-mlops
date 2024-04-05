@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Admin/Desktop/Desmondonam/Projects/abtest-mlops/abtest-mlops/mlruns/mlruns/0/6ed8d0b1bec44f559e0c3bc0afaa66f8/artifacts
+end_time: 1712305915950
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6ed8d0b1bec44f559e0c3bc0afaa66f8
+run_name: worried-koi-310
+run_uuid: 6ed8d0b1bec44f559e0c3bc0afaa66f8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712305915874
+status: 3
+tags: []
+user_id: Desmond

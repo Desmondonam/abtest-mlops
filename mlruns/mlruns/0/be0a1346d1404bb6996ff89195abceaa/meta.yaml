@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Admin/Desktop/Desmondonam/Projects/abtest-mlops/abtest-mlops/mlruns/mlruns/0/be0a1346d1404bb6996ff89195abceaa/artifacts
+end_time: 1712305969836
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: be0a1346d1404bb6996ff89195abceaa
+run_name: burly-bat-184
+run_uuid: be0a1346d1404bb6996ff89195abceaa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712305969761
+status: 3
+tags: []
+user_id: Desmond

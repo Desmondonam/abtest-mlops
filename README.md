@@ -19,3 +19,6 @@ The tasks for this project are divided into several key components:
 - Comparing A/B testing and machine learning approaches
 - Presentation of analysis results
 - Recommendations and limitations
+
+# Outputs
+![Output1](image.png)
