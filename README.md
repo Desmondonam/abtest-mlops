@@ -1,5 +1,6 @@
 "#abtest-mlops" 
 
+![Output1](image.png)
 # Task Overview
 The tasks for this project are divided into several key components:
 
@@ -21,4 +22,3 @@ The tasks for this project are divided into several key components:
 - Recommendations and limitations
 
 # Outputs
-![Output1](image.png)
