@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.preprocessing import Normalizer, MinMaxScaler
 
 
+# Used to read
 class Helper:
   
   def __init__(self):
