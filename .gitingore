@@ -1,6 +1,16 @@
 .env
 /env
-.env/
 venv
 .venv
+/venv
+.env
+.venv/
 venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+db.sqlite3
+.git/
+.gitignore
