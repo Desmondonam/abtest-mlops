@@ -13,4 +13,3 @@ __pycache__/
 .Python
 db.sqlite3
 .git/
-.gitignore

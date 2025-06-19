@@ -29,7 +29,7 @@ class Helper:
     
   def percent_missing(self, df: pd.DataFrame) -> float:
 
-    totalCells = np.product(df.shape)
+    totalCells = np.prod(df.shape)
     missingCount = df.isnull().sum()
     totalMissing = missingCount.sum()
     return round((totalMissing / totalCells) * 100, 2)
