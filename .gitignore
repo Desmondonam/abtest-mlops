@@ -1,0 +1,12 @@
+venv
+.venv/
+venv/
+.venv
+.checkpoints
+checkpoint/
+.checkpoints/
+checkpoint
+pycache/
+.pytest_
+.pycache
+
