@@ -22,7 +22,7 @@ env/
 *.ipynb~
 
 # Data (tracked by DVC)
-data/*.csv
+# data/*.csv
 data/*.parquet
 data/*.json
 data2/
@@ -39,11 +39,6 @@ mlruns/
 .dvc/cache
 .dvc/tmp
 
-# OS
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
 
 # IDE
 .vscode/settings.json
