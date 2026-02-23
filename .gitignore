@@ -1,18 +1,67 @@
-venv
-.venv/
-venv/
-.venv
-.checkpoints
-checkpoint/
-.checkpoints/
-checkpoint
-pycache/
-.pytest_
-.pycache
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
 .Python
-db.sqlite3
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
 
+# Environments
+.env
+.venv
+venv/
+env/
+.envrc
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb~
+
+# Data (tracked by DVC)
+data/*.csv
+data/*.parquet
+data/*.json
+data2/
+
+# Models
+models/*.pkl
+models/*.joblib
+models/*.bin
+
+# MLflow
+mlruns/
+
+# DVC cache
+.dvc/cache
+.dvc/tmp
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+logs/
+
+# Outputs (optional — keep or remove)
+outputs/
+
+# Docker
+.dockerignore
+
+# Coverage
+.coverage
+htmlcov/
+.pytest_cache/
