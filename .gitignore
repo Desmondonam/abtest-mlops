@@ -9,4 +9,10 @@ checkpoint
 pycache/
 .pytest_
 .pycache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+db.sqlite3
 
