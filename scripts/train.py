@@ -3,6 +3,8 @@ train.py - Improved model training with MLflow tracking and hyperparameter tunin
 Trains Logistic Regression, Decision Tree, Random Forest, and XGBoost models.
 """
 
+import sys
+print(sys.executable)
 import os
 import logging
 import argparse
