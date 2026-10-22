@@ -21,19 +21,17 @@ env/
 .ipynb_checkpoints/
 *.ipynb~
 
-# Data (tracked by DVC)
-# data/*.csv
-data/*.parquet
-data/*.json
+# Data (not committed; see README for source)
+data/
 data2/
 
 # Models
-models/*.pkl
-models/*.joblib
-models/*.bin
+models/
 
 # MLflow
 mlruns/
+mlflow.db
+mlartifacts/
 
 # DVC cache
 .dvc/cache
@@ -41,7 +39,7 @@ mlruns/
 
 
 # IDE
-.vscode/settings.json
+.vscode/
 .idea/
 *.suo
 *.user
@@ -50,8 +48,11 @@ mlruns/
 *.log
 logs/
 
-# Outputs (optional — keep or remove)
+# Outputs
 outputs/
+
+# Node lockfile at the root of a Python project (the React app keeps its own)
+/package-lock.json
 
 # Docker
 .dockerignore
