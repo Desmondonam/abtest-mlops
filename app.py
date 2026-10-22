@@ -423,15 +423,14 @@ elif page == "ℹ️ About":
     st.markdown("""
     ## A/B Test MLOps Dashboard
 
-    This project demonstrates how to combine **classical A/B testing** with **machine learning** 
-    in a production-grade MLOps setup.
+    Analysis of the SmartAd A/B test: a two-proportion z-test on brand-survey answers,
+    plus conversion models tracked in MLflow.
 
     ### Tech Stack
     | Component | Tool |
     |-----------|------|
     | ML Models | scikit-learn, XGBoost |
     | Experiment Tracking | MLflow |
-    | Data Versioning | DVC |
     | Dashboard | Streamlit |
     | Containerization | Docker |
     | Statistical Tests | SciPy |
