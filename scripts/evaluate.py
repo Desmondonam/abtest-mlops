@@ -15,13 +15,12 @@ from sklearn.metrics import (
     classification_report, confusion_matrix,
     roc_auc_score, roc_curve, precision_recall_curve
 )
-from sklearn.model_selection import train_test_split
+
+from train import load_and_preprocess
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
-TARGET_COL = "converted"
-RANDOM_STATE = 42
 OUTPUT_DIR = Path("outputs")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
@@ -30,19 +29,8 @@ def evaluate(model_path: str, data_path: str):
     logger.info(f"Loading model from {model_path}")
     model = joblib.load(model_path)
 
-    logger.info(f"Loading data from {data_path}")
-    df = pd.read_csv(data_path)
-    df.drop_duplicates(inplace=True)
-
-    drop_cols = [c for c in df.columns if c.lower() in ("auction_id", "date", "time")]
-    df.drop(columns=drop_cols, errors="ignore", inplace=True)
-
-    X = df.drop(columns=[TARGET_COL])
-    y = df[TARGET_COL].fillna(0).astype(int)
-
-    _, X_test, _, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=RANDOM_STATE, stratify=y
-    )
+    # Same cleaning, feature engineering and split as training, so this is the held-out test set
+    _, X_test, _, y_test, _ = load_and_preprocess(Path(data_path))
 
     y_pred = model.predict(X_test)
     y_prob = model.predict_proba(X_test)[:, 1]

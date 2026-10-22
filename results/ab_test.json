@@ -1,0 +1,31 @@
+{
+  "impressions": {
+    "control": 4071,
+    "exposed": 4006
+  },
+  "responders": {
+    "control": 586,
+    "exposed": 657
+  },
+  "z_test": {
+    "test": "Two-Proportion Z-Test",
+    "control_rate": 0.4505,
+    "treatment_rate": 0.4688,
+    "lift_pct": 4.06,
+    "z_statistic": 0.6457,
+    "p_value": 0.518486,
+    "significant": false,
+    "ci_diff_95": [
+      -0.0372,
+      0.0738
+    ]
+  },
+  "chi_square": {
+    "test": "Chi-Square Test",
+    "chi2_statistic": 0.3465,
+    "p_value": 0.556077,
+    "degrees_of_freedom": 1,
+    "significant": false
+  },
+  "n_per_group_for_10pct_relative_lift": 1928
+}

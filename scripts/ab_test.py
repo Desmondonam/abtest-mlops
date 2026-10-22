@@ -201,13 +201,33 @@ class ABTest:
 
 
 # ──────────────────────────────────────────────────────────────
-# QUICK TEST
+# RUN ON THE ADSMART DATA
 # ──────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    np.random.seed(42)
-    ctrl = pd.Series(np.random.binomial(1, 0.10, 1000))
-    treat = pd.Series(np.random.binomial(1, 0.12, 1000))
+    import argparse
+    import json
+    from pathlib import Path
+
+    parser = argparse.ArgumentParser(description="Run the A/B test on AdSmart data")
+    parser.add_argument("--data", type=str, default="data/AdSmartABdata.csv")
+    parser.add_argument("--out", type=str, default="results/ab_test.json")
+    args = parser.parse_args()
+
+    df = pd.read_csv(args.data)
+    # Only users who answered the brand survey have an outcome; converted = answered "yes"
+    responders = df[(df["yes"] == 1) | (df["no"] == 1)]
+    ctrl = responders.loc[responders["experiment"] == "control", "yes"]
+    treat = responders.loc[responders["experiment"] == "exposed", "yes"]
+
     ab = ABTest(ctrl, treat)
-    report = ab.full_report()
-    for k, v in report.items():
-        print(f"\n{k}:\n{v}")
+    report = {
+        "impressions": {k: int(v) for k, v in df["experiment"].value_counts().items()},
+        "responders": {"control": len(ctrl), "exposed": len(treat)},
+        "z_test": ab.z_test(),
+        "chi_square": ab.chi_square_test(),
+        "n_per_group_for_10pct_relative_lift": ab.required_sample_size(ctrl.mean(), 0.10),
+    }
+    Path(args.out).parent.mkdir(exist_ok=True)
+    with open(args.out, "w") as f:
+        json.dump(report, f, indent=2, default=lambda o: o.item() if hasattr(o, "item") else str(o))
+    print(json.dumps(report, indent=2, default=lambda o: o.item() if hasattr(o, "item") else str(o)))

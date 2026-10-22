@@ -3,9 +3,8 @@ train.py - Improved model training with MLflow tracking and hyperparameter tunin
 Trains Logistic Regression, Decision Tree, Random Forest, and XGBoost models.
 """
 
-import sys
-print(sys.executable)
 import os
+import json
 import logging
 import argparse
 import warnings
@@ -45,6 +44,7 @@ logger = logging.getLogger(__name__)
 DATA_PATH = Path("data/AdSmartABdata.csv")
 MODEL_DIR = Path("models")
 MODEL_DIR.mkdir(exist_ok=True)
+RESULTS_PATH = Path("results/model_metrics.json")
 
 TARGET_COL = "converted"
 RANDOM_STATE = 42
@@ -67,6 +67,15 @@ def load_and_preprocess(data_path: Path) -> tuple:
     # Drop columns that are identifiers or have too many unique values
     drop_cols = [c for c in df.columns if c.lower() in ("auction_id", "date", "time")]
     df.drop(columns=drop_cols, errors="ignore", inplace=True)
+
+    # ── Derive target from the raw AdSmart survey columns ──
+    # Only users who answered the survey (yes=1 or no=1) have a known outcome.
+    # yes/no are dropped afterwards because they encode the label directly.
+    if TARGET_COL not in df.columns and {"yes", "no"}.issubset(df.columns):
+        df = df[(df["yes"] == 1) | (df["no"] == 1)].copy()
+        df[TARGET_COL] = df["yes"]
+        df.drop(columns=["yes", "no"], inplace=True)
+        logger.info(f"Derived '{TARGET_COL}' from yes/no; {len(df)} responders kept")
 
     # ── Encode yes/no booleans ──
     bool_cols = [c for c in df.columns if df[c].dtype == object
@@ -175,6 +184,7 @@ def train_all_models(
     best_model_name = None
     best_roc_auc = -1.0
     best_pipeline = None
+    results = {}
 
     models = get_models()
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
@@ -187,7 +197,7 @@ def train_all_models(
             ("classifier", model)
         ])
 
-        with mlflow.start_run(run_name=model_name):
+        with mlflow.start_run(run_name=model_name) as run:
             # Cross-validation
             cv_scores = cross_val_score(pipeline, X_train, y_train,
                                         cv=cv, scoring="roc_auc", n_jobs=-1)
@@ -216,6 +226,8 @@ def train_all_models(
             else:
                 mlflow.sklearn.log_model(pipeline, artifact_path="model")
 
+            results[model_name] = {"run_id": run.info.run_id,
+                                   **{k: round(float(v), 4) for k, v in metrics.items()}}
             logger.info(f"Metrics: {metrics}")
             logger.info(f"\n{classification_report(y_test, y_pred)}")
 
@@ -237,6 +249,12 @@ def train_all_models(
         joblib.dump(best_pipeline, best_path)
         logger.info(f"\nBest model: {best_model_name} (ROC-AUC={best_roc_auc:.4f})")
         logger.info(f"Best model saved to {best_path}")
+
+    RESULTS_PATH.parent.mkdir(exist_ok=True)
+    with open(RESULTS_PATH, "w") as f:
+        json.dump({"experiment": experiment_name, "best_model": best_model_name,
+                   "models": results}, f, indent=2)
+    logger.info(f"Metrics summary written to {RESULTS_PATH}")
 
     return best_model_name, best_roc_auc
 
